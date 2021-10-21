@@ -45,32 +45,13 @@ Explain what these tests test, why and how to run them
 Give an example
 ```
 
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+We use Git for versioning.
 
 ## Authors
 
