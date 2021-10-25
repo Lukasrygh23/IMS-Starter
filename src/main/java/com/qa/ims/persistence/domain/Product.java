@@ -46,6 +46,18 @@ public class Product {
 		return "id:" + productId + " Product Name:" + productName + " Product Value:" + productValue;
 	}
 	
+	//This skips some tests???
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
+		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+		result = prime * result + ((productValue == null) ? 0 : productValue.hashCode());
+		
+		return result;
+	}
+	
 	//Otherwise tests won't work right.
 	@Override
 	public boolean equals(Object obj) {
