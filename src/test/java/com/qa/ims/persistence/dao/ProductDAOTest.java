@@ -22,7 +22,7 @@ public class ProductDAOTest {
 	
 	@Test
 	public void testCreate() {
-		final Product created = new Product(2L, "Oversized Novelty Gorilla", 10.10);
+		final Product created = new Product(3L, "Oversized Novelty Gorilla", 10.10);
 		assertEquals(created, DAO.create(created));
 	}
 		
@@ -31,12 +31,13 @@ public class ProductDAOTest {
 	public void testReadAll() {
 		List<Product> expected = new ArrayList<>();
 		expected.add(new Product(1L, "Really big chair", 500.25));
+		expected.add(new Product(2L, "Endless bag of wine", 1004.21));
 		assertEquals(expected, DAO.readAll());
 	}
 	
 	@Test
 	public void testReadLatest() {
-		assertEquals(new Product(1L, "Really big chair", 500.25), DAO.readLatest());
+		assertEquals(new Product(2L, "Endless bag of wine", 1004.21), DAO.readLatest());
 	}
 	
 	@Test
@@ -53,6 +54,6 @@ public class ProductDAOTest {
 	
 	@Test
 	public void testDelete() {
-		assertEquals(1, DAO.delete(1));
+		assertEquals(1, DAO.delete(2));
 	}
 }
