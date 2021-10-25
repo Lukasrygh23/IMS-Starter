@@ -1,6 +1,7 @@
 package com.qa.ims.persistence.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -58,8 +59,16 @@ public class ProductDAO implements Dao<Product> {
 	}
 
 	@Override
-	public Product create(Product t) {
-		// TODO Auto-generated method stub
+	public Product create(Product product) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+					PreparedStatement statement = connection.prepareStatement("INSERT INTO customers(product_name, product_value) VALUES (?, ?)");){
+					statement.setString(1,  product.getProductName());
+					statement.setDouble(2, product.getProductValue());
+					} catch (Exception e) {
+						LOGGER.debug(e);
+						LOGGER.error(e.getMessage());
+					}
+
 		return null;
 	}
 	

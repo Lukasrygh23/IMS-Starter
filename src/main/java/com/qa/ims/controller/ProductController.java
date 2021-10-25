@@ -44,6 +44,8 @@ public class ProductController implements CrudController<Product> {
 		Product product = productDAO.create(new Product(productName, productValue));
 		return product;
 	}
+	
+	
 	@Override
 	public Product update() {
 		// TODO Auto-generated method stub
