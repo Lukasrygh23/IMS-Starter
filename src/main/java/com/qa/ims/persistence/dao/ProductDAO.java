@@ -61,7 +61,7 @@ public class ProductDAO implements Dao<Product> {
 	@Override
 	public Product create(Product product) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-					PreparedStatement statement = connection.prepareStatement("INSERT INTO customers(product_name, product_value) VALUES (?, ?)");){
+					PreparedStatement statement = connection.prepareStatement("INSERT INTO products(product_name, product_value) VALUES (?, ?)");){
 					statement.setString(1,  product.getProductName());
 					statement.setDouble(2, product.getProductValue());
 					} catch (Exception e) {
@@ -91,8 +91,18 @@ public class ProductDAO implements Dao<Product> {
 
 
 	@Override
-	public Product update(Product t) {
-		// TODO Auto-generated method stub
+	public Product update(Product product) {
+		try (Connection connection = DBUtils.getInstance().getConnection(); 
+				PreparedStatement statement = connection.prepareStatement("UPDATE products SET product_name = ?, product_value = ? WHERE product_id = ?");) {
+			statement.setString(1, product.getProductName());
+			statement.setDouble(2,  product.getProductValue());
+			statement.setLong(3,  product.getProductId());
+			statement.executeUpdate();
+			return read(product.getProductId());
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 

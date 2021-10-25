@@ -48,8 +48,15 @@ public class ProductController implements CrudController<Product> {
 	
 	@Override
 	public Product update() {
-		// TODO Auto-generated method stub
-		return null;
+		LOGGER.info("Please enter the id of the product you would like to update");
+		Long productId = utils.getLong();
+		LOGGER.info("Please enter a product name");
+		String productName = utils.getString();
+		LOGGER.info("Please enter a value");
+		Double productValue = utils.getDouble();
+		Product product = productDAO.update(new Product(productId, productName, productValue));
+		LOGGER.info("Customer updated");
+		return product;
 	}
 	@Override
 	public int delete() {
