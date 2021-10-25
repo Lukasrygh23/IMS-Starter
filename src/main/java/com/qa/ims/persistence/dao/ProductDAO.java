@@ -64,6 +64,8 @@ public class ProductDAO implements Dao<Product> {
 					PreparedStatement statement = connection.prepareStatement("INSERT INTO products(product_name, product_value) VALUES (?, ?)");){
 					statement.setString(1,  product.getProductName());
 					statement.setDouble(2, product.getProductValue());
+					statement.executeUpdate();
+					return readLatest();
 					} catch (Exception e) {
 						LOGGER.debug(e);
 						LOGGER.error(e.getMessage());
