@@ -1,8 +1,11 @@
 package com.qa.ims.persistence.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAOTest {
@@ -17,7 +20,8 @@ public class OrderDAOTest {
 	
 	@Test
 	public void testCreate() {
-		
+		final Order created = new Order(2L, 1L, "Mockery of a Mockery");
+		assertEquals(created, DAO.create(created));
 	}
 	
 	@Test
@@ -27,7 +31,7 @@ public class OrderDAOTest {
 	
 	@Test
 	public void testReadLatest() {
-		
+		assertEquals(new Order(1L, 1L, "Art exhibit"), DAO.readLatest());
 	}
 	
 	@Test
