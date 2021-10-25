@@ -4,4 +4,4 @@ INSERT INTO `products` (`product_name`, `product_value`) VALUES ('Really big cha
 set @product_id = LAST_INSERT_ID();
 INSERT INTO `orders` (`id`, `delivery_reason`) VALUES (1, 'Art exhibit');
 set @order_id = LAST_INSERT_ID();
-INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES 1, 1);
+INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES (1, 1);

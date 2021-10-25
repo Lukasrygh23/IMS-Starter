@@ -24,7 +24,7 @@ public class CustomerDAO implements Dao<Customer> {
 		String firstName = resultSet.getString("first_name");
 		String surname = resultSet.getString("surname");
 		return new Customer(id, firstName, surname);
-	}
+	} 
 
 	/**
 	 * Reads all customers from the database

@@ -1,13 +1,17 @@
 package com.qa.ims.controllers;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.ims.controller.OrderController;
 import com.qa.ims.persistence.dao.OrderDAO;
+import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -26,7 +30,19 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testCreate() {
+		final String D_REASON = "Gag Gift";
+		final Long C_ID = 1L;
+		final Order created = new Order(C_ID, D_REASON);
 		
+		Mockito.when(utils.getLong()).thenReturn(C_ID);
+		Mockito.when(utils.getString()).thenReturn(D_REASON);
+		Mockito.when(dao.create(created)).thenReturn(created);
+		
+		assertEquals(created, controller.create());
+		
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(utils, Mockito.times(1)).getString();
+		Mockito.verify(dao, Mockito.times(1)).create(created);
 	}
 	
 	@Test

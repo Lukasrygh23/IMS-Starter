@@ -49,7 +49,6 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order create(Order order) {
-		// TODO DO THIS
 
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
