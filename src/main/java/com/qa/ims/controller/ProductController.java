@@ -55,7 +55,7 @@ public class ProductController implements CrudController<Product> {
 		LOGGER.info("Please enter a value");
 		Double productValue = utils.getDouble();
 		Product product = productDAO.update(new Product(productId, productName, productValue));
-		LOGGER.info("Customer updated");
+		LOGGER.info("Customer updated.");
 		return product;
 	}
 	@Override
