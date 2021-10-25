@@ -33,10 +33,12 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	public Order readLatest() {
-		try (Connection connection = DBUtils.getInstance().getConnection(); 
+		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders ORDER BY order_id DESC LIMIT 1");) {
+				ResultSet resultSet = statement
+						.executeQuery("SELECT * FROM orders ORDER BY order_id DESC LIMIT 1");) {
 			resultSet.next();
+			//System.out.println("Results set!");
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e);
@@ -55,7 +57,7 @@ public class OrderDAO implements Dao<Order> {
 			statement.setLong(1, order.getCustomerID());
 			statement.setString(2, order.getDeliveryReason());
 			statement.executeUpdate();
-			
+
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e);
@@ -67,7 +69,18 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order read(Long id) {
-		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();  
+				PreparedStatement statement = connection
+						.prepareStatement("SELECT * FROM orders WHERE order_id = ?");) {
+			statement.setLong(1,  id);
+			try(ResultSet resultSet = statement.executeQuery();) {
+				resultSet.next();
+				return modelFromResultSet(resultSet);
+			}
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 

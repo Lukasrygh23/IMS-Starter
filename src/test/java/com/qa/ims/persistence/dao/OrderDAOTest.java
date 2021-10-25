@@ -36,6 +36,8 @@ public class OrderDAOTest {
 	
 	@Test
 	public void testRead() {
+		final long ID = 1L;
+		assertEquals(new Order(1L, 1L, "Art exhibit"), DAO.read(ID));
 		
 	}
 	
