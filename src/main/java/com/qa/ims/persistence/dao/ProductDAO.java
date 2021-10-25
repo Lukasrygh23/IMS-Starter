@@ -74,7 +74,18 @@ public class ProductDAO implements Dao<Product> {
 	
 	@Override
 	public Product read(Long id) {
-		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM products WHERE product_id = ?");) {
+			statement.setLong(1,  id);
+			try (ResultSet resultSet = statement.executeQuery();) {
+				resultSet.next();
+				return modelFromResultSet(resultSet);
+			}
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+
 		return null;
 	}
 
