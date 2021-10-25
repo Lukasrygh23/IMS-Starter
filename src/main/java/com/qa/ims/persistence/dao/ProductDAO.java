@@ -43,10 +43,17 @@ public class ProductDAO implements Dao<Product> {
 		}
 		return new ArrayList<>();
 	}
-
-	@Override
-	public Product read(Long id) {
-		// TODO Auto-generated method stub
+	
+	public Product readLatest() {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM products ORDER BY product_id DESC LIMIT 1");) {
+			resultSet.next();
+			return modelFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
@@ -55,6 +62,13 @@ public class ProductDAO implements Dao<Product> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Product read(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	@Override
 	public Product update(Product t) {
