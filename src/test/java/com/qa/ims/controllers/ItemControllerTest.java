@@ -12,21 +12,21 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.qa.ims.controller.ProductController;
-import com.qa.ims.persistence.dao.ProductDAO;
+import com.qa.ims.controller.ItemController;
+import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.domain.Product;
 import com.qa.ims.utils.Utils;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ProductControllerTest {
+public class ItemControllerTest {
 	
 	@Mock
 	private Utils utils;
 	
 	@Mock
-	private ProductDAO dao;
+	private ItemDAO dao;
 	@InjectMocks
-	private ProductController controller;
+	private ItemController controller;
 	
 	@Test
 	public void testCreate() {

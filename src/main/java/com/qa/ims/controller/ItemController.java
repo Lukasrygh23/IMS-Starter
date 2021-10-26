@@ -5,20 +5,20 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.dao.ProductDAO;
+import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.domain.Product;
 import com.qa.ims.utils.Utils;
 
-public class ProductController implements CrudController<Product> {
+public class ItemController implements CrudController<Product> {
 	
 	public static final Logger LOGGER = LogManager.getLogger();
 	
-	private ProductDAO productDAO;
+	private ItemDAO itemDAO;
 	private Utils utils;
 	
-	public ProductController(ProductDAO productDAO, Utils utils) {
+	public ItemController(ItemDAO itemDAO, Utils utils) {
 		super();
-		this.productDAO = productDAO;
+		this.itemDAO = itemDAO;
 		this.utils = utils;
 	}
 	
@@ -27,7 +27,7 @@ public class ProductController implements CrudController<Product> {
 	 */
 	@Override
 	public List<Product> readAll() {
-		List<Product> products = productDAO.readAll();
+		List<Product> products = itemDAO.readAll();
 		for (Product product : products) {
 			LOGGER.info(product);
 		}
@@ -41,7 +41,7 @@ public class ProductController implements CrudController<Product> {
 		String productName = utils.getString();
 		LOGGER.info("Please enter a value");
 		Double productValue = utils.getDouble();
-		Product product = productDAO.create(new Product(productName, productValue));
+		Product product = itemDAO.create(new Product(productName, productValue));
 		return product;
 	}
 	
@@ -54,7 +54,7 @@ public class ProductController implements CrudController<Product> {
 		String productName = utils.getString();
 		LOGGER.info("Please enter a value");
 		Double productValue = utils.getDouble();
-		Product product = productDAO.update(new Product(productId, productName, productValue));
+		Product product = itemDAO.update(new Product(productId, productName, productValue));
 		LOGGER.info("Customer updated.");
 		return product;
 	}
@@ -62,7 +62,7 @@ public class ProductController implements CrudController<Product> {
 	public int delete() {
 		LOGGER.info("Please enter the ID of the product you would like to delete");
 		Long id = utils.getLong();
-		return productDAO.delete(id);
+		return itemDAO.delete(id);
 	}
 
 }

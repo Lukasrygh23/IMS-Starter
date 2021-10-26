@@ -13,7 +13,8 @@ import com.qa.ims.utils.Utils;
 public enum Action {
 	CREATE("To save a new entity into the database"), READ("To read an entity from the database"),
 	UPDATE("To change an entity already in the database"), DELETE("To remove an entity from the database"),
-	RETURN("To return to domain selection");
+	RETURN("To return to domain selection"), ADDITEM("To add an item to an order"), 
+	REMOVEITEM("To remove an item from an order"), COST("To obtain the total cost of an order");
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -29,7 +30,17 @@ public enum Action {
 	public String getDescription() {
 		return this.name() + ": " + this.description;
 	}
-
+	
+	/**
+	 * Prints out SOME actions.
+	 */
+	public static void printMainAction() {
+		for (int i = 0; i < 5; i++) {
+			Action action = Action.values()[i];
+			LOGGER.info(action.getDescription());
+		}
+	}
+	
 	/**
 	 * Prints out all possible actions
 	 */

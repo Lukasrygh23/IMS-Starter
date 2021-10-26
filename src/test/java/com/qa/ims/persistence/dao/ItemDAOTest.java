@@ -11,8 +11,8 @@ import org.junit.Test;
 import com.qa.ims.persistence.domain.Product;
 import com.qa.ims.utils.DBUtils;
 
-public class ProductDAOTest {
-	private final ProductDAO DAO = new ProductDAO();
+public class ItemDAOTest {
+	private final ItemDAO DAO = new ItemDAO();
 	
 	@Before
 	public void setup() {

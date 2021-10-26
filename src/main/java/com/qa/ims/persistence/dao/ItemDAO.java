@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import com.qa.ims.persistence.domain.Product;
 import com.qa.ims.utils.DBUtils;
 
-public class ProductDAO implements Dao<Product> {
+public class ItemDAO implements Dao<Product> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
