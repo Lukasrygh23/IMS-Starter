@@ -6,4 +6,5 @@ set @product_id = LAST_INSERT_ID();
 INSERT INTO `products` (`product_name`, `product_value`) VALUES ('Endless bag of wine', '1004.21');
 INSERT INTO `orders` (`id`, `delivery_reason`) VALUES (1, 'Art exhibit');
 set @order_id = LAST_INSERT_ID();
+INSERT INTO `orders` (`id`, `delivery_reason`) VALUES (1, 'Fixing a mistake');
 INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES (1, 1);
