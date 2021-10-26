@@ -2,6 +2,9 @@ package com.qa.ims.controllers;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -47,6 +50,14 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testReadAll() {
+		List<Order> orders = new ArrayList<>();
+		orders.add(new Order(1L, "Art exhibit"));
+		
+		Mockito.when(dao.readAll()).thenReturn(orders);
+		
+		assertEquals(orders, controller.readAll());
+		
+		Mockito.verify(dao, Mockito.times(1)).readAll();
 		
 	}
 	/**
@@ -59,6 +70,14 @@ public class OrderControllerTest {
 	
 	@Test
 	public void testDelete() {
+		final long ID = 1L;
+		Mockito.when(utils.getLong()).thenReturn(ID);
+		Mockito.when(dao.delete(ID)).thenReturn(1);
+		
+		assertEquals(1L, this.controller.delete());
+		
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).delete(ID);
 		
 	}
 	
