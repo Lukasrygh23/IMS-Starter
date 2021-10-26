@@ -54,6 +54,8 @@ public class ProductControllerTest {
 		Mockito.when(dao.readAll()).thenReturn(products);
 		
 		assertEquals(products, controller.readAll());
+		
+		Mockito.verify(dao, Mockito.times(1)).readAll();
 	}
 	
 	@Test

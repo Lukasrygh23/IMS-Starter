@@ -1,7 +1,10 @@
 INSERT INTO `customers` (`first_name`, `surname`) VALUES ('jordan', 'harrison');
 set @person_id = LAST_INSERT_ID();
+INSERT INTO `customers` (`first_name`, `surname`) VALUES ('johnny', 'smithy');
 INSERT INTO `products` (`product_name`, `product_value`) VALUES ('Really big chair', '500.25');
 set @product_id = LAST_INSERT_ID();
-INSERT INTO `orders` (`id`) SELECT `id` FROM `ims`.`customers` where `first_name` like 'jordan';
+INSERT INTO `products` (`product_name`, `product_value`) VALUES ('Endless bag of wine', '1004.21');
+INSERT INTO `orders` (`id`, `delivery_reason`) VALUES (1, 'Art exhibit');
 set @order_id = LAST_INSERT_ID();
-INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES (@order_id, @product_id);
+INSERT INTO `orders` (`id`, `delivery_reason`) VALUES (1, 'Fixing a mistake');
+INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES (1, 1);
