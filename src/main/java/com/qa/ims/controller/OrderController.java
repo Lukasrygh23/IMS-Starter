@@ -55,5 +55,16 @@ public class OrderController implements CrudController<Order> {
 		//Make sure this nukes all items in the order first! Right now it's not fully working.
 		return orderDAO.delete(id);
 	}
-
+	
+	public void addItem() {
+		
+	}
+	
+	public void removeItem() {
+		
+	}
+	
+	public void cost() {
+		
+	}
 }

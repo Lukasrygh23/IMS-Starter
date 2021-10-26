@@ -34,7 +34,7 @@ public enum Action {
 	/**
 	 * Prints out SOME actions.
 	 */
-	public static void printMainAction() {
+	public static void printMainActions() {
 		for (int i = 0; i < 5; i++) {
 			Action action = Action.values()[i];
 			LOGGER.info(action.getDescription());

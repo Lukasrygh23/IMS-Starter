@@ -100,7 +100,7 @@ public class OrderDAO implements Dao<Order> {
 	
 	@Override
 	public Order update(Order t) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -116,6 +116,18 @@ public class OrderDAO implements Dao<Order> {
 		}
 				
 		return 0;
+	}
+	
+	public void addItem() {
+		
+	}
+	
+	public void removeItem() {
+		
+	}
+	
+	public void cost() {
+		
 	}
 
 }

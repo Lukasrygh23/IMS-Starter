@@ -77,13 +77,24 @@ public class IMS {
 			}
 
 			LOGGER.info(() ->"What would you like to do with " + domain.name().toLowerCase() + ":");
-
-			Action.printActions();
+			
+			//Setting up a way to only have items call the extras.
+			if (active != this.orders) {
+				Action.printMainActions();
+			} 
+			else {
+				Action.printActions();
+			}
+			
 			Action action = Action.getAction(utils);
-
+		
 			if (action == Action.RETURN) {
 				changeDomain = true;
-			} else {
+			} else if (active == this.orders){
+				doAction(active, action);
+			}
+			
+			else {
 				doAction(active, action);
 			}
 		} while (!changeDomain);
@@ -106,6 +117,34 @@ public class IMS {
 		case RETURN:
 			break;
 		default:
+			break;
+		}
+	}
+	
+	public void doOrderAction(OrderController orderController, Action action) {
+		switch (action) {
+		case CREATE:
+			orderController.create();
+			break;
+		case READ:
+			orderController.readAll();
+			break;
+		case UPDATE:
+			//orderController.update();
+			break;
+		case DELETE:
+			orderController.delete();
+			break;
+		case ADDITEM:
+			orderController.addItem();
+			break;
+		case REMOVEITEM:
+			orderController.removeItem();
+			break;
+		case COST:
+			orderController.cost();
+			break;
+		default: 
 			break;
 		}
 	}
