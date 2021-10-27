@@ -63,7 +63,7 @@ public class OrderDAOTest {
 	
 	@Test
 	public void addItemTest() {
-		final OrderItem created = new OrderItem(2L, 1L, 1L, "Why not");
+		final OrderItem created = new OrderItem(2L, 1L, 1L);
 		assertEquals(created, DAO.addItem(created));
 	}
 	

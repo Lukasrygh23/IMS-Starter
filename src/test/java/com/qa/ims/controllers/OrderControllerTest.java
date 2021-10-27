@@ -87,17 +87,15 @@ public class OrderControllerTest {
 		final Long O_ID = 1L;
 		final Long I_ID = 1L;
 
-		final String reason = "Why not?";
-		final OrderItem created = new OrderItem(O_ID, I_ID, reason);
+
+		final OrderItem created = new OrderItem(O_ID, I_ID);
 		
 		Mockito.when(utils.getLong()).thenReturn(1L, 1L);
-		Mockito.when(utils.getString()).thenReturn(reason);
 		Mockito.when(dao.addItem(created)).thenReturn(created);
 		
 		assertEquals(created, controller.addItem());
 		
 		Mockito.verify(utils, Mockito.times(2)).getLong();
-		Mockito.verify(utils, Mockito.times(1)).getString();
 		Mockito.verify(dao, Mockito.times(1)).addItem(created);
 	}
 	

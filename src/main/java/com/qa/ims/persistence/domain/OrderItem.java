@@ -5,20 +5,17 @@ public class OrderItem {
 	private Long orderID;
 	private Long itemID;
 	
-	//Remove this one later!
-	private String deliveryReason;
+
 	
-	public OrderItem(Long orderID, Long itemID, String deliveryReason) {
+	public OrderItem(Long orderID, Long itemID) {
 		this.setOrderID(orderID);
 		this.setItemID(itemID);
-		this.setDeliveryReason(deliveryReason);
 	}
 	
-	public OrderItem(Long orderItemID, Long orderID, Long itemID, String deliveryReason) {
+	public OrderItem(Long orderItemID, Long orderID, Long itemID) {
 		this.setOrderItemID(orderItemID);
 		this.setOrderID(orderID);
 		this.setItemID(itemID);
-		this.setDeliveryReason(deliveryReason);
 	}
 
 	public Long getOrderItemID() {
@@ -45,17 +42,11 @@ public class OrderItem {
 		this.itemID = itemID;
 	}
 
-	public String getDeliveryReason() {
-		return deliveryReason;
-	}
 
-	public void setDeliveryReason(String deliveryReason) {
-		this.deliveryReason = deliveryReason;
-	}
 	
 	@Override
 	public String toString() {
-		return "orderItem id: " + orderItemID + " order ID:" + orderID + " itemID:" + itemID + " delivery reasom:" + deliveryReason;
+		return "orderItem id: " + orderItemID + " order ID:" + orderID + " itemID:" + itemID;
 	}
 	
 	@Override
@@ -65,7 +56,6 @@ public class OrderItem {
 		result = prime * result + ((orderItemID == null) ? 0 : orderItemID.hashCode());
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
-		result = prime * result + ((deliveryReason == null) ? 0 : deliveryReason.hashCode());
 		return result;
 	}
 	
@@ -93,12 +83,7 @@ public class OrderItem {
 				return false;
 		} else if (!getItemID().equals(other.getItemID()))
 			return false;
-		
-		if (getDeliveryReason() == null) {
-			if (other.getDeliveryReason() != null)
-				return false;
-		} else if (!getDeliveryReason().equals(other.getDeliveryReason()))
-			return false;
+
 		
 		return true;
 	}

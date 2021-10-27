@@ -119,11 +119,48 @@ public class OrderDAO implements Dao<Order> {
 		return 0;
 	}
 	
-	public OrderItem addItem(OrderItem orderItem) {
+	public OrderItem modelFromResultSetOrderItem(ResultSet resultSet) throws SQLException {
+		Long orderItemID = resultSet.getLong("order_item_id");
+		Long orderID = resultSet.getLong("order_id");
+		Long customerID = resultSet.getLong("id");
+
+		return new OrderItem(orderItemID, orderID, customerID);
 		
+	}
+	
+	public OrderItem readLatestOrderItem() {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement
+						.executeQuery("SELECT * FROM order_items ORDER BY order_id DESC LIMIT 1");) {
+			resultSet.next();
+			//System.out.println("Results set!");
+			return modelFromResultSetOrderItem(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		
 		return null;
 	}
+	
+	public OrderItem addItem(OrderItem orderItem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("INSERT INTO orders_items() VALUES (?, ?)");) {
+			statement.setLong(1, orderItem.getOrderID());
+			statement.setLong(2, orderItem.getItemID());
+			statement.executeUpdate();
+			
+			return readLatestOrderItem();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		
+		return null;
+	}
+	
 	
 	public int removeItem(long id) {
 		
