@@ -35,7 +35,7 @@ public class IMS {
 		this.items = new ItemController(itemDAO, utils);
 		final OrderDAO orderDAO = new OrderDAO();
 		this.orders = new OrderController(orderDAO, utils);
-	}
+	} 
 
 	public void imsSystem() {
 		LOGGER.info("Welcome to the Inventory Management System!");
