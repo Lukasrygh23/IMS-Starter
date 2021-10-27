@@ -6,10 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.ItemDAO;
-import com.qa.ims.persistence.domain.Product;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
-public class ItemController implements CrudController<Product> {
+public class ItemController implements CrudController<Item> {
 	
 	public static final Logger LOGGER = LogManager.getLogger();
 	
@@ -26,37 +26,37 @@ public class ItemController implements CrudController<Product> {
 	 * Reads all products to the logger.
 	 */
 	@Override
-	public List<Product> readAll() {
-		List<Product> products = itemDAO.readAll();
-		for (Product product : products) {
-			LOGGER.info(product);
+	public List<Item> readAll() {
+		List<Item> items = itemDAO.readAll();
+		for (Item item : items) {
+			LOGGER.info(item);
 		}
-		return products;
+		return items;
 	
 		
 	}
 	@Override
-	public Product create() {
+	public Item create() {
 		LOGGER.info("Please enter a Product Name");
 		String productName = utils.getString();
 		LOGGER.info("Please enter a value");
 		Double productValue = utils.getDouble();
-		Product product = itemDAO.create(new Product(productName, productValue));
-		return product;
+		Item item = itemDAO.create(new Item(productName, productValue));
+		return item;
 	}
 	
 	
 	@Override
-	public Product update() {
+	public Item update() {
 		LOGGER.info("Please enter the id of the product you would like to update");
 		Long productId = utils.getLong();
 		LOGGER.info("Please enter a product name");
 		String productName = utils.getString();
 		LOGGER.info("Please enter a value");
 		Double productValue = utils.getDouble();
-		Product product = itemDAO.update(new Product(productId, productName, productValue));
+		Item item = itemDAO.update(new Item(productId, productName, productValue));
 		LOGGER.info("Customer updated.");
-		return product;
+		return item;
 	}
 	@Override
 	public int delete() {

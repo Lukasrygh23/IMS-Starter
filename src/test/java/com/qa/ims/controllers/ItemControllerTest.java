@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.ims.controller.ItemController;
 import com.qa.ims.persistence.dao.ItemDAO;
-import com.qa.ims.persistence.domain.Product;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,7 +32,7 @@ public class ItemControllerTest {
 	public void testCreate() {
 		final String P_NAME = "Really Small Chair";
 		final Double P_VALUE = 500.53;
-		final Product created = new Product(P_NAME, P_VALUE);
+		final Item created = new Item(P_NAME, P_VALUE);
 		
 		Mockito.when(utils.getString()).thenReturn(P_NAME);
 		Mockito.when(utils.getDouble()).thenReturn(P_VALUE);
@@ -48,23 +48,23 @@ public class ItemControllerTest {
 	
 	@Test
 	public void testReadAll() {
-		List<Product> products = new ArrayList<>();
-		products.add(new Product(1L, "really weird chair", 500.11));
+		List<Item> items = new ArrayList<>();
+		items.add(new Item(1L, "really weird chair", 500.11));
 		
-		Mockito.when(dao.readAll()).thenReturn(products);
+		Mockito.when(dao.readAll()).thenReturn(items);
 		
-		assertEquals(products, controller.readAll());
+		assertEquals(items, controller.readAll());
 		
 		Mockito.verify(dao, Mockito.times(1)).readAll();
 	}
 	
 	@Test
 	public void testUpdate() {
-		Product updated = new Product(1L, "Steel table", 240.42);
+		Item updated = new Item(1L, "Steel table", 240.42);
 		
 		Mockito.when(this.utils.getLong()).thenReturn(1L);
-		Mockito.when(this.utils.getString()).thenReturn(updated.getProductName());
-		Mockito.when(this.utils.getDouble()).thenReturn(updated.getProductValue());
+		Mockito.when(this.utils.getString()).thenReturn(updated.getItemName());
+		Mockito.when(this.utils.getDouble()).thenReturn(updated.getItemValue());
 		Mockito.when(this.dao.update(updated)).thenReturn(updated);
 		
 		assertEquals(updated, this.controller.update());
