@@ -66,8 +66,10 @@ public class OrderController implements CrudController<Order> {
 	}
 	
 	public int removeItem() {
+		LOGGER.info("Please enter the ID of the order item you wish to remove.");
+		Long orderItemID = utils.getLong();
 		
-		return 0;
+		return orderDAO.removeItem(orderItemID);
 	}
 	
 	public Double cost() {

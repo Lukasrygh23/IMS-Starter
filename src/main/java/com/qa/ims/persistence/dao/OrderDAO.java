@@ -163,7 +163,17 @@ public class OrderDAO implements Dao<Order> {
 	
 	
 	public int removeItem(long id) {
-		
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("DELETE FROM ORDERS_ITEMS where order_item_id = ?");
+				) {
+			statement.setLong(1, id);
+			return statement.executeUpdate();
+			
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		
 		return 0;
 	}

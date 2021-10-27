@@ -91,7 +91,7 @@ public class IMS {
 			if (action == Action.RETURN) {
 				changeDomain = true;
 			} else if (active == this.orders){
-				doAction(active, action);
+				doOrderAction(this.orders, action);
 			}
 			
 			else {

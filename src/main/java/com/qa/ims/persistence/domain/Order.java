@@ -52,6 +52,11 @@ public class Order {
 	}
 	
 	@Override
+	public String toString() {
+		return "orderID:" + orderID + " customerID:" + customerID + " deliveryReason:" + deliveryReason;
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) 
 			return true;
