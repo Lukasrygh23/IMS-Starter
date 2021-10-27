@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
@@ -118,16 +119,22 @@ public class OrderDAO implements Dao<Order> {
 		return 0;
 	}
 	
-	public void addItem() {
+	public OrderItem addItem(OrderItem orderItem) {
 		
+		
+		return null;
 	}
 	
-	public void removeItem() {
+	public int removeItem(long id) {
 		
+		
+		return 0;
 	}
 	
-	public void cost() {
+	public double cost() {
 		
+		
+		return 0;
 	}
 
 }

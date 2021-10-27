@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAOTest {
@@ -57,6 +58,23 @@ public class OrderDAOTest {
 	@Test
 	public void testDelete() {
 		assertEquals(1, DAO.delete(2));
+		
+	}
+	
+	@Test
+	public void addItemTest() {
+		final OrderItem created = new OrderItem(2L, 1L, 1L, "Why not");
+		assertEquals(created, DAO.addItem(created));
+	}
+	
+	@Test
+	public void removeItemTest() {
+		assertEquals(1, DAO.removeItem(1));
+		
+	}
+	
+	@Test
+	public void calculateCostTest() {
 		
 	}
 }
