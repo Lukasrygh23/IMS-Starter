@@ -57,4 +57,30 @@ public class CustomerDAOTest {
 	public void testDelete() {
 		assertEquals(1, DAO.delete(2));
 	}
+	
+	@Test
+	public void testCreateFail() {
+		String longName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		Customer chungus = new Customer(longName, "F");
+		assertEquals(null, DAO.create(chungus));
+	}
+	
+	@Test
+	public void testReadFail() {
+		long badId = 25L;
+		assertEquals(null, DAO.read(badId));
+	}
+	
+	@Test
+	public void testDeleteFail() {
+		long badId = 0;
+		assertEquals(0, DAO.delete(badId));
+	}
+	
+	@Test
+	public void testUpdateFail() {
+		String longName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		Customer sonOfChungus = new Customer(5L, longName, "lol");
+		assertEquals(null, DAO.update(sonOfChungus));
+	}
 }

@@ -48,12 +48,26 @@ public class OrderDAOTest {
 		
 	}
 	
-/**	
- *	I don't need this one! Delivery_Reason is currently not to be changed. Maybe I don't need it..
- * @Test
+	@Test
+	public void testCreateFail() {
+		String longName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		Order chungus = new Order(1L, 1L, longName);
+		assertEquals(null, DAO.create(chungus));
+	}
+	
+	@Test
+	public void testReadFail() {
+		long badId = 25L;
+		assertEquals(null, DAO.read(badId));
+	}
+	
+	
+ 	//I don't need this one! Delivery_Reason is currently not to be changed. Maybe I don't need it..
+  @Test
 	public void testUpdate() {
-		
-	}*/
+	  Order order = new Order(1L, 1L, "bluh");
+		assertEquals(null, DAO.update(order));
+	}
 	
 	@Test
 	public void testDelete() {
