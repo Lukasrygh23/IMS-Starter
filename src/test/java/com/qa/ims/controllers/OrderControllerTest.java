@@ -1,6 +1,8 @@
 package com.qa.ims.controllers;
 
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +117,16 @@ public class OrderControllerTest {
 	@Test
 	public void calculateCostTest() {
 		final long orderID = 1;
+		final double totalCost = 200.00;
 		
+		Mockito.when(utils.getLong()).thenReturn(orderID);
+		Mockito.when(dao.cost(orderID)).thenReturn(totalCost);
+		
+		Double testCost = this.controller.cost();
+		assertTrue(totalCost == testCost);
+		
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).cost(orderID);
 	}
 	
 	
