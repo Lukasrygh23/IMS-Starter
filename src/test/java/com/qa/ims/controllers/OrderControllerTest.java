@@ -63,13 +63,13 @@ public class OrderControllerTest {
 		Mockito.verify(dao, Mockito.times(1)).readAll();
 		
 	}
-	/**
-	 * Do I need this???
+
 	@Test
 	public void testUpdate() {
 		
+		assertEquals(null, controller.update());
 	}
-	*/
+	
 	
 	@Test
 	public void testDelete() {

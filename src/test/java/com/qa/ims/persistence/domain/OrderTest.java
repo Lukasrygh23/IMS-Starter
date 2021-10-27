@@ -18,4 +18,11 @@ public class OrderTest {
 		//return "orderID:" + orderID + " customerID:" + customerID + " deliveryReason:" + deliveryReason;
 		assertEquals(testOrder.toString(), "orderID:1 customerID:1 deliveryReason:farts");
 	}
+	
+	@Test
+	public void getOrderID() {
+		Long longID = 1L;
+		Order testOrder = new Order(1L, 1L, "farts");
+		assertEquals(testOrder.getOrderId(), longID);
+	}
 }

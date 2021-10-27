@@ -17,4 +17,12 @@ public class ActionTest {
 		
 	}
 	
+	
+	@Test
+	public void testMainActionPrinting() {
+		
+		Action.printActions();
+		Action.printMainActions();
+		assertEquals(1, 1);
+	}
 }

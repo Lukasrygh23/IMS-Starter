@@ -56,4 +56,18 @@ public class ItemDAOTest {
 	public void testDelete() {
 		assertEquals(1, DAO.delete(2));
 	}
+	
+
+	@Test
+	public void testCreateFail() {
+		String longName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		Item chungus = new Item(longName, 420.69);
+		assertEquals(null, DAO.create(chungus));
+	}
+	
+	@Test
+	public void testReadFail() {
+		long badId = 25L;
+		assertEquals(null, DAO.read(badId));
+	}
 }
