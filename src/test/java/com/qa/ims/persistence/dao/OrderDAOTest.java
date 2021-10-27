@@ -62,6 +62,11 @@ public class OrderDAOTest {
 	}
 	
 	@Test
+	public void readLatestOITest() {
+		assertEquals(new OrderItem(1L, 1L, 1L), DAO.readLatestOrderItem());
+	}
+	
+	@Test
 	public void addItemTest() {
 		final OrderItem created = new OrderItem(2L, 1L, 1L);
 		assertEquals(created, DAO.addItem(created));
