@@ -114,6 +114,7 @@ public class OrderControllerTest {
 	
 	@Test
 	public void calculateCostTest() {
+		final long orderID = 1;
 		
 	}
 	

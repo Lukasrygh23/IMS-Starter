@@ -178,7 +178,7 @@ public class OrderDAO implements Dao<Order> {
 		return 0;
 	}
 	
-	public double cost() {
+	public double cost(long orderID) {
 		
 		
 		return 0;

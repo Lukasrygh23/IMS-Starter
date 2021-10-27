@@ -80,6 +80,9 @@ public class OrderDAOTest {
 	
 	@Test
 	public void calculateCostTest() {
+		Double testCost = 500.25;
+		Double totalCost = DAO.cost(1);
+		assertEquals(testCost, totalCost);
 		
 	}
 }
