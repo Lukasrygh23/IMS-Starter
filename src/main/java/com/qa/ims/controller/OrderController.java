@@ -58,8 +58,11 @@ public class OrderController implements CrudController<Order> {
 	}
 	
 	public OrderItem addItem() {
-		
-		return null;
+		LOGGER.info("Please enter an Order ID");
+		Long orderID = utils.getLong();
+		LOGGER.info("Please enter a Product ID");
+		Long productID = utils.getLong();
+		return orderDAO.addItem(new OrderItem(orderID, productID));
 	}
 	
 	public int removeItem() {
