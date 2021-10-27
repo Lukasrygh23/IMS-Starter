@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.Utils;
 
 public class OrderController implements CrudController<Order> {
@@ -55,5 +56,24 @@ public class OrderController implements CrudController<Order> {
 		//Make sure this nukes all items in the order first! Right now it's not fully working.
 		return orderDAO.delete(id);
 	}
-
+	
+	public OrderItem addItem() {
+		LOGGER.info("Please enter an Order ID");
+		Long orderID = utils.getLong();
+		LOGGER.info("Please enter a Product ID");
+		Long productID = utils.getLong();
+		return orderDAO.addItem(new OrderItem(orderID, productID));
+	}
+	
+	public int removeItem() {
+		LOGGER.info("Please enter the ID of the order item you wish to remove.");
+		Long orderItemID = utils.getLong();
+		
+		return orderDAO.removeItem(orderItemID);
+	}
+	
+	public Double cost() {
+		
+		return null;
+	}
 }

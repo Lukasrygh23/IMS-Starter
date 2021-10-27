@@ -15,6 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.qa.ims.controller.OrderController;
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.Utils;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -78,6 +79,42 @@ public class OrderControllerTest {
 		
 		Mockito.verify(utils, Mockito.times(1)).getLong();
 		Mockito.verify(dao, Mockito.times(1)).delete(ID);
+		
+	}
+	
+	@Test
+	public void addItemTest() {
+		final Long O_ID = 1L;
+		final Long I_ID = 1L;
+
+
+		final OrderItem created = new OrderItem(O_ID, I_ID);
+		
+		Mockito.when(utils.getLong()).thenReturn(1L, 1L);
+		Mockito.when(dao.addItem(created)).thenReturn(created);
+		
+		assertEquals(created, controller.addItem());
+		
+		Mockito.verify(utils, Mockito.times(2)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).addItem(created);
+	}
+	
+	@Test
+	public void removeItemTest() {
+		final long ID = 1;
+		Mockito.when(utils.getLong()).thenReturn(ID);
+		Mockito.when(dao.removeItem(ID)).thenReturn(1);
+		
+		assertEquals(1L, this.controller.removeItem());
+		
+		Mockito.verify(utils, Mockito.times(1)).getLong();
+		Mockito.verify(dao, Mockito.times(1)).removeItem(ID);
+		
+	}
+	
+	@Test
+	public void calculateCostTest() {
+		final long orderID = 1;
 		
 	}
 	

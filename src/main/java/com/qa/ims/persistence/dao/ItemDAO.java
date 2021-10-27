@@ -11,33 +11,33 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Product;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.DBUtils;
 
-public class ProductDAO implements Dao<Product> {
+public class ItemDAO implements Dao<Item> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
-	public Product modelFromResultSet(ResultSet resultSet) throws SQLException {
+	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
 
 		Long productId = resultSet.getLong("product_id");
 		String productName = resultSet.getString("product_name");
 		Double productValue = resultSet.getDouble("product_value");
 
-		return new Product(productId, productName, productValue);
+		return new Item(productId, productName, productValue);
 	}
 
 	@Override
-	public List<Product> readAll() {
+	public List<Item> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("Select * FROM products");) {
-			List<Product> products = new ArrayList<>();
+			List<Item> items = new ArrayList<>();
 			while (resultSet.next()) {
-				products.add(modelFromResultSet(resultSet));
+				items.add(modelFromResultSet(resultSet));
 			}
-			return products;
+			return items;
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
@@ -45,7 +45,7 @@ public class ProductDAO implements Dao<Product> {
 		return new ArrayList<>();
 	}
 
-	public Product readLatest() {
+	public Item readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement
@@ -60,12 +60,12 @@ public class ProductDAO implements Dao<Product> {
 	}
 
 	@Override
-	public Product create(Product product) {
+	public Item create(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO products(product_name, product_value) VALUES (?, ?)");) {
-			statement.setString(1, product.getProductName());
-			statement.setDouble(2, product.getProductValue());
+			statement.setString(1, item.getItemName());
+			statement.setDouble(2, item.getItemValue());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -77,7 +77,7 @@ public class ProductDAO implements Dao<Product> {
 	}
 
 	@Override
-	public Product read(Long id) {
+	public Item read(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("SELECT * FROM products WHERE product_id = ?");) {
@@ -95,15 +95,15 @@ public class ProductDAO implements Dao<Product> {
 	}
 
 	@Override
-	public Product update(Product product) {
+	public Item update(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(
 						"UPDATE products SET product_name = ?, product_value = ? WHERE product_id = ?");) {
-			statement.setString(1, product.getProductName());
-			statement.setDouble(2, product.getProductValue());
-			statement.setLong(3, product.getProductId());
+			statement.setString(1, item.getItemName());
+			statement.setDouble(2, item.getItemValue());
+			statement.setLong(3, item.getItemId());
 			statement.executeUpdate();
-			return read(product.getProductId());
+			return read(item.getItemId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

@@ -8,11 +8,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.qa.ims.persistence.domain.Product;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.DBUtils;
 
-public class ProductDAOTest {
-	private final ProductDAO DAO = new ProductDAO();
+public class ItemDAOTest {
+	private final ItemDAO DAO = new ItemDAO();
 	
 	@Before
 	public void setup() {
@@ -22,33 +22,33 @@ public class ProductDAOTest {
 	
 	@Test
 	public void testCreate() {
-		final Product created = new Product(3L, "Oversized Novelty Gorilla", 10.10);
+		final Item created = new Item(3L, "Oversized Novelty Gorilla", 10.10);
 		assertEquals(created, DAO.create(created));
 	}
 		
 		
 	@Test
 	public void testReadAll() {
-		List<Product> expected = new ArrayList<>();
-		expected.add(new Product(1L, "Really big chair", 500.25));
-		expected.add(new Product(2L, "Endless bag of wine", 1004.21));
+		List<Item> expected = new ArrayList<>();
+		expected.add(new Item(1L, "Really big chair", 500.25));
+		expected.add(new Item(2L, "Endless bag of wine", 1004.21));
 		assertEquals(expected, DAO.readAll());
 	}
 	
 	@Test
 	public void testReadLatest() {
-		assertEquals(new Product(2L, "Endless bag of wine", 1004.21), DAO.readLatest());
+		assertEquals(new Item(2L, "Endless bag of wine", 1004.21), DAO.readLatest());
 	}
 	
 	@Test
 	public void testRead() {
 		final long ID = 1L;
-		assertEquals(new Product(ID, "Really big chair", 500.25), DAO.read(ID));
+		assertEquals(new Item(ID, "Really big chair", 500.25), DAO.read(ID));
 	}
 	
 	@Test
 	public void testUpdate() {
-		final Product updated = new Product(1L, "Oversized Novelty Gorilla", 20.50);
+		final Item updated = new Item(1L, "Oversized Novelty Gorilla", 20.50);
 		assertEquals(updated, DAO.update(updated));
 	}
 	

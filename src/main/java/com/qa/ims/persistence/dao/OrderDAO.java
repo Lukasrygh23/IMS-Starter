@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
@@ -100,7 +101,7 @@ public class OrderDAO implements Dao<Order> {
 	
 	@Override
 	public Order update(Order t) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -115,6 +116,71 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.error(e.getMessage());
 		}
 				
+		return 0;
+	}
+	
+	public OrderItem modelFromResultSetOrderItem(ResultSet resultSet) throws SQLException {
+		Long orderItemID = resultSet.getLong("order_item_id");
+		Long orderID = resultSet.getLong("order_id");
+		Long itemID = resultSet.getLong("product_id");
+
+		return new OrderItem(orderItemID, orderID, itemID);
+		
+	}
+	
+	public OrderItem readLatestOrderItem() {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement
+						.executeQuery("SELECT * FROM orders_items ORDER BY order_item_id DESC LIMIT 1");) {
+			resultSet.next();
+			//System.out.println("Results set!");
+			return modelFromResultSetOrderItem(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		
+		return null;
+	}
+	
+	public OrderItem addItem(OrderItem orderItem) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("INSERT INTO orders_items(order_id, product_id) VALUES (?, ?)");) {
+			statement.setLong(1, orderItem.getOrderID());
+			statement.setLong(2, orderItem.getItemID());
+			statement.executeUpdate();
+			
+			return readLatestOrderItem();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		
+		return null;
+	}
+	
+	
+	public int removeItem(long id) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("DELETE FROM ORDERS_ITEMS where order_item_id = ?");
+				) {
+			statement.setLong(1, id);
+			return statement.executeUpdate();
+			
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		
+		return 0;
+	}
+	
+	public double cost(long orderID) {
+		
+		
 		return 0;
 	}
 
