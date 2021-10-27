@@ -179,7 +179,22 @@ public class OrderDAO implements Dao<Order> {
 	}
 	
 	public double cost(long orderID) {
-		
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("SELECT products.product_value FROM ORDERS_ITEMS JOIN PRODUCTS ON orders_items.product_id = products.product_id WHERE orders_items.order_id = ?");) {
+			statement.setLong(1, orderID);
+			//God this feels DISGUSTING.
+			ResultSet resultSet = statement.executeQuery();
+			Double totalPrice = 0.0;
+			while (resultSet.next()) {
+				totalPrice += resultSet.getDouble("product_value");
+			}
+			return totalPrice;
+			
+		}catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		
 		return 0;
 	}

@@ -45,7 +45,7 @@ public class OrderController implements CrudController<Order> {
 	//Lol. Lmao.
 	@Override
 	public Order update() {
-		// TODO Auto-generated method stub
+		LOGGER.info("This is not supported for Orders. Sorry!");
 		return null;
 	}
 	
@@ -73,7 +73,10 @@ public class OrderController implements CrudController<Order> {
 	}
 	
 	public Double cost() {
+		LOGGER.info("Please enter an Order ID");
+		Long orderID = utils.getLong();
+		return orderDAO.cost(orderID);
 		
-		return null;
+		
 	}
 }
