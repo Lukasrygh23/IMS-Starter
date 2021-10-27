@@ -80,7 +80,7 @@ public class CustomerDAOTest {
 	@Test
 	public void testUpdateFail() {
 		String longName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		Customer sonOfChungus = new Customer(5L, longName, "lol");
+		Customer sonOfChungus = new Customer(null, longName, "lol");
 		assertEquals(null, DAO.update(sonOfChungus));
 	}
 }
