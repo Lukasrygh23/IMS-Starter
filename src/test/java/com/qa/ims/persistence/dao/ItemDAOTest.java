@@ -70,4 +70,10 @@ public class ItemDAOTest {
 		long badId = 25L;
 		assertEquals(null, DAO.read(badId));
 	}
+	
+	@Test
+	public void testUpdateFail() {
+		Item failure = new Item(null, "lul", 20.20);
+		assertEquals(null, DAO.update(failure));
+	}
 }
