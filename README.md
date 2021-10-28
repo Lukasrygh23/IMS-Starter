@@ -1,7 +1,7 @@
-Coverage: 34%
+
 # Project Title
 
-One Paragraph of project description goes here
+This is a console-based application that can query an IMS database. It can create customers, orders, and items. Orders are linked to customers and individual items can be attached to an order, with the cost also able to be queried and dynamically adjusting based on the items in the order.
 
 ## Getting Started
 
