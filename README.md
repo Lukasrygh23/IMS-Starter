@@ -17,21 +17,6 @@ MySQL Server (8.0 Community Edition)
 ```
 
 ### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
 In order to have the system functioning you must first install MySQL 8.0 and ensure the server is running (using windows task manager). It can be found under services as:
 
 ```
