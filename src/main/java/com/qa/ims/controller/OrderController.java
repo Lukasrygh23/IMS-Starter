@@ -39,6 +39,7 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter a reason for delivery");
 		String deliveryReason = utils.getString();
 		Order order = orderDAO.create(new Order(id, deliveryReason));
+		LOGGER.info("Order added!");
 		return order;
 	}
 
@@ -62,6 +63,7 @@ public class OrderController implements CrudController<Order> {
 		Long orderID = utils.getLong();
 		LOGGER.info("Please enter a Product ID");
 		Long productID = utils.getLong();
+		LOGGER.info("Item added!");
 		return orderDAO.addItem(new OrderItem(orderID, productID));
 	}
 	
@@ -75,7 +77,9 @@ public class OrderController implements CrudController<Order> {
 	public Double cost() {
 		LOGGER.info("Please enter an Order ID");
 		Long orderID = utils.getLong();
-		return orderDAO.cost(orderID);
+		Double cost = orderDAO.cost(orderID);
+		LOGGER.info(cost);
+		return cost;
 		
 		
 	}

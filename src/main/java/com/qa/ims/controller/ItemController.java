@@ -42,6 +42,7 @@ public class ItemController implements CrudController<Item> {
 		LOGGER.info("Please enter a value");
 		Double productValue = utils.getDouble();
 		Item item = itemDAO.create(new Item(productName, productValue));
+		LOGGER.info("Item added!");
 		return item;
 	}
 	
